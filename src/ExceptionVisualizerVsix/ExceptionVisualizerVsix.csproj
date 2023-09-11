@@ -15,7 +15,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-		<ProjectReference Include="..\ExceptionVisualizerSource\ExceptionVisualizerSource.csproj" />
 		<ProjectReference Include="..\ExceptionVisualizer\ExceptionVisualizer.csproj">
 			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
 			<IncludeInVSIX>true</IncludeInVSIX>
