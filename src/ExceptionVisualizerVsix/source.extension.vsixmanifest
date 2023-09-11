@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
 	<Metadata>
-		<Identity Id="ExceptionVisualizerVsix.59bb613d-3a6f-4cc0-90ae-e31743f8efde" Version="0.1.0" Language="en-US" Publisher="elmah.io" />
+		<Identity Id="ExceptionVisualizerVsix.59bb613d-3a6f-4cc0-90ae-e31743f8efde" Version="0.1.0" Language="en-US" Publisher="elmahio" />
 		<DisplayName>Exception Visualizer</DisplayName>
 		<Description>Exception Debug Visualizer for Visual Studio.</Description>
 		<MoreInfo>https://github.com/elmahio/ExceptionVisualizer</MoreInfo>
