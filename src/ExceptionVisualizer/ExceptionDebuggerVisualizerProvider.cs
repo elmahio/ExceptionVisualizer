@@ -9,14 +9,14 @@ namespace ExceptionVisualizer
     /// Debugger visualizer provider class for <see cref="System.String"/>.
     /// </summary>
     [VisualStudioContribution]
-    internal class StringDebuggerVisualizerProvider : DebuggerVisualizerProvider
+    internal class ExceptionDebuggerVisualizerProvider : DebuggerVisualizerProvider
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="StringDebuggerVisualizerProvider"/> class.
+        /// Initializes a new instance of the <see cref="ExceptionDebuggerVisualizerProvider"/> class.
         /// </summary>
         /// <param name="extension">Extension instance.</param>
         /// <param name="extensibility">Extensibility object.</param>
-        public StringDebuggerVisualizerProvider(ExtensionEntrypoint extension, VisualStudioExtensibility extensibility)
+        public ExceptionDebuggerVisualizerProvider(ExtensionEntrypoint extension, VisualStudioExtensibility extensibility)
             : base(extension, extensibility)
         {
         }
