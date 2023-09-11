@@ -28,4 +28,4 @@ jobs:
     - uses: actions/upload-artifact@v3
       with:
         name: ExceptionVisualizer.vsix
-        path: src\ExceptionVisualizerVsix\bin\Release\ExceptionVisualizerVsix.vsix
+        path: src\ExceptionVisualizerVsix\bin\Release\net6.0-windows\ExceptionVisualizerVsix.vsix
