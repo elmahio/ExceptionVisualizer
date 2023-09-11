@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.VisualStudio.Sdk.Build/17.5.4065">
+    <PropertyGroup>
+        <TargetFramework>net6.0-windows</TargetFramework>
+        <TargetVsixContainerName>ExceptionVisualizerVsix.vsix</TargetVsixContainerName>
+
+        <GeneratePkgDefFile>false</GeneratePkgDefFile>
+        <IncludeAssemblyInVSIXContainer>false</IncludeAssemblyInVSIXContainer>
+        <IncludeDebugSymbolsInVSIXContainer>false</IncludeDebugSymbolsInVSIXContainer>
+        <IncludeDebugSymbolsInLocalVSIXDeployment>false</IncludeDebugSymbolsInLocalVSIXDeployment>
+        <CopyOutputSymbolsToOutputDirectory>false</CopyOutputSymbolsToOutputDirectory>
+
+        <StartAction>Program</StartAction>
+        <StartProgram Condition="'$(DevEnvDir)' != ''">$(DevEnvDir)devenv.exe</StartProgram>
+        <StartArguments>/rootsuffix Exp</StartArguments>
+    </PropertyGroup>
+
+    <ItemGroup>
+		<ProjectReference Include="..\ExceptionVisualizer\ExceptionVisualizer.csproj">
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+			<IncludeInVSIX>true</IncludeInVSIX>
+			<IncludeOutputGroupsInVSIX>DeploymentAssetsOutputGroup</IncludeOutputGroupsInVSIX>
+		</ProjectReference>
+		<!--<ProjectReference Include="..\ExceptionVisualizerSource\ExceptionVisualizerSource.csproj">
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+			<IncludeInVSIX>true</IncludeInVSIX>
+			<IncludeOutputGroupsInVSIX>DeploymentAssetsOutputGroup</IncludeOutputGroupsInVSIX>
+		</ProjectReference>-->
+	</ItemGroup>
+</Project>
