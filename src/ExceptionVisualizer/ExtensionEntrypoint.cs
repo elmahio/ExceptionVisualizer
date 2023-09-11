@@ -9,11 +9,6 @@ namespace ExceptionVisualizer
     [VisualStudioContribution]
     internal class ExtensionEntrypoint : Extension
     {
-        public ExtensionEntrypoint()
-        {
-            System.Diagnostics.Debugger.Launch();
-        }
-
         /// <inheritdoc/>
         public override ExtensionConfiguration ExtensionConfiguration => new()
         {
