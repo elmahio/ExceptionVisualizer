@@ -15,15 +15,11 @@
     </PropertyGroup>
 
     <ItemGroup>
+		<ProjectReference Include="..\ExceptionVisualizerSource\ExceptionVisualizerSource.csproj" />
 		<ProjectReference Include="..\ExceptionVisualizer\ExceptionVisualizer.csproj">
 			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
 			<IncludeInVSIX>true</IncludeInVSIX>
 			<IncludeOutputGroupsInVSIX>DeploymentAssetsOutputGroup</IncludeOutputGroupsInVSIX>
 		</ProjectReference>
-		<!--<ProjectReference Include="..\ExceptionVisualizerSource\ExceptionVisualizerSource.csproj">
-			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-			<IncludeInVSIX>true</IncludeInVSIX>
-			<IncludeOutputGroupsInVSIX>DeploymentAssetsOutputGroup</IncludeOutputGroupsInVSIX>
-		</ProjectReference>-->
 	</ItemGroup>
 </Project>
