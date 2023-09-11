@@ -20,7 +20,7 @@ jobs:
       run: |
         (Get-Content -Path src\ExceptionVisualizerVsix\source.extension.vsixmanifest) |
           ForEach-Object {$_ -Replace '0.1.0', '0.1.${{ github.run_number }}'} |
-            Set-Content -Path src\CronExpressionsVsix\source.extension.vsixmanifest
+            Set-Content -Path src\ExceptionVisualizerVsix\source.extension.vsixmanifest
     - name: Restore
       run: nuget restore
     - name: Build
