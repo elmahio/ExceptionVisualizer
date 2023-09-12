@@ -83,6 +83,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="5"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -106,6 +107,7 @@
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
         </TreeView>
-        <ContentPresenter Content="{Binding SelectedItem}" Grid.Column="1" ContentTemplate="{StaticResource CaptureTemplate}"/>
+        <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" Background="{DynamicResource {x:Static styles:VsBrushes.BrandedUIBackgroundKey}}" />
+        <ContentPresenter Content="{Binding SelectedItem}" Grid.Column="2" ContentTemplate="{StaticResource CaptureTemplate}"/>
     </Grid>
 </DataTemplate>
