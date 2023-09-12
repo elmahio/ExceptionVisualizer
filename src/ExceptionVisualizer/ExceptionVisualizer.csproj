@@ -17,9 +17,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Remove="Command1.cs" />
-		<Page Remove="MyVisualizerUserControl.xaml" />
-		<EmbeddedResource Include="MyVisualizerUserControl.xaml" LogicalName="$(RootNamespace).MyVisualizerUserControl.xaml" />
+		<Page Remove="ExceptionUserControl.xaml" />
+		<EmbeddedResource Include="ExceptionUserControl.xaml" LogicalName="$(RootNamespace).ExceptionUserControl.xaml" />
 
 		<Content Include="..\ExceptionVisualizerSource\bin\$(Configuration)\netstandard2.0\ExceptionVisualizerSource.dll" Link="netstandard2.0\ExceptionVisualizerSource.dll">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

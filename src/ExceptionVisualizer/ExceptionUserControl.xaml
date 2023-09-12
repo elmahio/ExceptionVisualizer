@@ -55,12 +55,7 @@
                     <TextBlock Text="{Binding Source}" Grid.Column="1" Grid.Row="0"></TextBlock>
                     <TextBlock Text="{Binding TargetSite}" Foreground="#cd4b5b" FontFamily="Courier New" Grid.Column="1" Grid.Row="1"></TextBlock>
                     <TextBlock Text="{Binding HResult}" Grid.Column="1" Grid.Row="2"></TextBlock>
-                    <TextBlock Grid.Column="1" Grid.Row="3">
-                      <Hyperlink>
-                          <TextBlock Text="{Binding HelpLink}"/>
-                      </Hyperlink>
-                    </TextBlock>
-                    <!--<TextBlock Text="{Binding HelpLink}" Grid.Column="1" Grid.Row="3"></TextBlock>-->
+                    <TextBlock Text="{Binding HelpLink}" Grid.Column="1" Grid.Row="3"></TextBlock>
                 </Grid>
                 <TextBlock Grid.Row="3" Margin="3">
                     <TextBlock.Inlines>
@@ -82,15 +77,6 @@
                 <ScrollViewer Grid.Row="6" Margin="3" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                     <TextBlock Text="{Binding StackTrace}"/>
                 </ScrollViewer>
-                <!--<RichTextBox IsReadOnly="True" Grid.Row="6" Margin="3">
-                    <FlowDocument>
-                        <Paragraph>
-                            --><!--<TextBlock Text="{Binding StackTrace}"  />--><!--
-                            <Run Text="{Binding StackTrace}" />
-                        </Paragraph>
-                    </FlowDocument>
-                </RichTextBox>-->
-                <!--<WebBrowser Grid.Row="6" Margin="3"/>-->
             </Grid>
         </DataTemplate>
     </DataTemplate.Resources>

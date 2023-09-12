@@ -6,11 +6,11 @@ using System.Collections.ObjectModel;
 
 namespace ExceptionVisualizer
 {
-    internal class MyVisualizerUserControl : RemoteUserControl
+    internal class ExceptionUserControl : RemoteUserControl
     {
         private readonly VisualizerTarget visualizerTarget;
 
-        public MyVisualizerUserControl(VisualizerTarget visualizerTarget) : base(new ViewModel())
+        public ExceptionUserControl(VisualizerTarget visualizerTarget) : base(new ViewModel())
         {
             this.visualizerTarget = visualizerTarget;
         }

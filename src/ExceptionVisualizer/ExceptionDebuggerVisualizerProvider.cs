@@ -30,7 +30,7 @@ namespace ExceptionVisualizer
         /// <inheritdoc/>
         public override Task<IRemoteUserControl> CreateVisualizerAsync(VisualizerTarget visualizerTarget, CancellationToken cancellationToken)
         {
-            return Task.FromResult<IRemoteUserControl>(new MyVisualizerUserControl(visualizerTarget));
+            return Task.FromResult<IRemoteUserControl>(new ExceptionUserControl(visualizerTarget));
         }
     }
 }
