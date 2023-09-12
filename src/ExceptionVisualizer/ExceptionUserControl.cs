@@ -3,6 +3,7 @@ using ExceptionVisualizerSource;
 using Microsoft.VisualStudio.Extensibility.DebuggerVisualizers;
 using Microsoft.VisualStudio.Extensibility.UI;
 using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace ExceptionVisualizer
 {
@@ -52,6 +53,7 @@ namespace ExceptionVisualizer
                     Key = d.Key,
                     Value = d.Value,
                 })),
+                ShowData = exception.Data.Count > 0 ? Visibility.Visible : Visibility.Collapsed,
                 HelpLink = exception.HelpLink,
                 HResult = exception.HResult,
                 Message = exception.Message,
