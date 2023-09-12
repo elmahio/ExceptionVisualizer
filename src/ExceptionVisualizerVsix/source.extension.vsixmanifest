@@ -5,6 +5,7 @@
 		<DisplayName>Exception Visualizer</DisplayName>
 		<Description>Exception Debug Visualizer for Visual Studio.</Description>
 		<MoreInfo>https://github.com/elmahio/ExceptionVisualizer</MoreInfo>
+		<Preview>true</Preview>
 	</Metadata>
 	<Installation>
 		<InstallationTarget Id="Microsoft.VisualStudio.Pro" Version="[17.0,18.0)">
