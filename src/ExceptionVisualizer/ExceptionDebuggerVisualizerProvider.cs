@@ -22,7 +22,7 @@ namespace ExceptionVisualizer
         }
 
         /// <inheritdoc/>
-        public override DebuggerVisualizerProviderConfiguration DebuggerVisualizerProviderConfiguration => new("Exception Inspector", typeof(Exception))
+        public override DebuggerVisualizerProviderConfiguration DebuggerVisualizerProviderConfiguration => new("Exception Visualizer", typeof(Exception))
         {
             VisualizerObjectSourceType = new(typeof(ExceptionModelSource)),
         };
