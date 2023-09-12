@@ -15,7 +15,7 @@ namespace ExceptionVisualizer
             Metadata = new(
                     id: "ExceptionVisualizer.79fc9a70-ae6e-4c14-8931-ee37a81e5bdf",
                     version: this.ExtensionAssemblyVersion,
-                    publisherName: "Microsoft",
+                    publisherName: "elmahio",
                     displayName: "Exception Debugger Visualizer Extension"),
         };
 
