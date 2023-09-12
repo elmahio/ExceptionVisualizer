@@ -7,8 +7,6 @@ namespace ExceptionVisualizerSource
     [DataContract]
     public class ExceptionModel
     {
-        public string Id { get; set; } = $"i{Guid.NewGuid().ToString().Replace("-", "")}";
-
         [DataMember]
         public string Message { get; internal set; }
 
@@ -26,6 +24,7 @@ namespace ExceptionVisualizerSource
 
         [DataMember]
         public string Source { get; internal set; }
+
         [DataMember]
         public string TargetSite { get; internal set; }
 

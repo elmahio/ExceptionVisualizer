@@ -7,6 +7,7 @@ namespace ExceptionVisualizer.Models
     {
         [DataMember]
         public string Key { get; set; }
+
         [DataMember]
         public string Value { get; set; }
     }

@@ -24,6 +24,7 @@ namespace ExceptionVisualizer.Models
 
         [DataMember]
         public string Source { get; internal set; }
+
         [DataMember]
         public string TargetSite { get; internal set; }
 
@@ -34,6 +35,7 @@ namespace ExceptionVisualizer.Models
         public string HelpLink { get; internal set; }
 
         private bool isSelected;
+
         [DataMember]
         public bool IsSelected
         {
