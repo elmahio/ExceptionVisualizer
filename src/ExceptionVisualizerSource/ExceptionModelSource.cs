@@ -4,8 +4,7 @@ using System.Linq;
 using System.IO;
 using System.Collections.Generic;
 using System.Collections;
-using System.Data.Common;
-using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace ExceptionVisualizerSource
 {
@@ -46,6 +45,11 @@ namespace ExceptionVisualizerSource
                     .Cast<object>()
                     .Where(k => !string.IsNullOrWhiteSpace(k.ToString()))
                     .Select(i => new KeyValuePair<string, string>(i.ToString(), Value(e.Data, i))));
+            var stackTrace = new EnhancedStackTrace(e);
+            if (stackTrace.FrameCount > 0)
+            {
+                model.Demystified = stackTrace.ToString();
+            }
 
             if (e is AggregateException aggregateException && aggregateException.InnerExceptions?.Count> 0)
             {

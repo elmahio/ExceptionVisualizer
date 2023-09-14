@@ -18,6 +18,9 @@ namespace ExceptionVisualizer.Models
         public string StackTrace { get; set; }
 
         [DataMember]
+        public string Demystified { get; set; }
+
+        [DataMember]
         public ObservableCollection<DataViewModel> Data { get; set; } = new ObservableCollection<DataViewModel>();
 
         [DataMember]

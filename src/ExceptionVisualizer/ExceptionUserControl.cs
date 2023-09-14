@@ -60,6 +60,7 @@ namespace ExceptionVisualizer
                 Source = exception.Source,
                 StackTrace = exception.StackTrace,
                 TargetSite = exception.TargetSite,
+                Demystified = exception.Demystified,
                 @Type = exception.Type,
             };
             foreach (var inner in exception.InnerExceptions)

@@ -23,6 +23,9 @@
 		<Content Include="..\ExceptionVisualizerSource\bin\$(Configuration)\netstandard2.0\ExceptionVisualizerSource.dll" Link="netstandard2.0\ExceptionVisualizerSource.dll">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
+		<Content Include="bin\$(Configuration)\net6.0-windows\Ben.Demystifier.dll" Link="netstandard2.0\Ben.Demystifier.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
 	</ItemGroup>
 
 	<ItemGroup>

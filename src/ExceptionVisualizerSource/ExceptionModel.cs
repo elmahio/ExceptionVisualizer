@@ -17,6 +17,9 @@ namespace ExceptionVisualizerSource
         public string StackTrace { get; set; }
 
         [DataMember]
+        public string Demystified { get; set; }
+
+        [DataMember]
         public List<KeyValuePair<string, string>> Data { get; set; } = new List<KeyValuePair<string, string>>();
 
         [DataMember]

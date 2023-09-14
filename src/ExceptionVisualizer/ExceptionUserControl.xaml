@@ -5,6 +5,7 @@
     <DataTemplate.Resources>
         <Style TargetType="TreeView" BasedOn="{StaticResource {x:Static styles:VsResourceKeys.ThemedDialogTreeViewStyleKey}}" />
         <Style TargetType="TextBox" BasedOn="{StaticResource {x:Static styles:VsResourceKeys.TextBoxStyleKey}}" />
+        <Style TargetType="TabItem" BasedOn="{StaticResource {x:Static styles:VsResourceKeys.ThemedDialogTabItemNavigationStyleKey}}" />
         <DataTemplate x:Key="CaptureTemplate">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -16,7 +17,6 @@
                     <RowDefinition Height="80"></RowDefinition>
                     <RowDefinition MaxHeight="20" Height="Auto"></RowDefinition>
                     <RowDefinition MaxHeight="90" Height="Auto"></RowDefinition>
-                    <RowDefinition Height="20"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <TextBlock Text="{Binding Type}" FontSize="16" VerticalAlignment="Center" Grid.Row="0" Margin="3"/>
@@ -105,15 +105,18 @@
                         </DataGrid.Columns>
                     </DataGrid>
                 </ScrollViewer>
-                <TextBlock Grid.Row="5" Margin="3">
-                    <TextBlock.Inlines>
-                        <Run FontWeight="Bold" Text="StackTrace" />
-                    </TextBlock.Inlines>
-                </TextBlock>
-
-                <ScrollViewer Grid.Row="6" Margin="3" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                    <TextBlock Text="{Binding StackTrace}"/>
-                </ScrollViewer>
+                <TabControl Grid.Row="5" Margin="3" Foreground="{DynamicResource VsBrush.ToolWindowText}" Background="{DynamicResource VsBrush.ToolWindowBackground }">
+                    <TabItem Header="Stack Trace">
+                        <ScrollViewer Margin="3" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                            <TextBlock Text="{Binding StackTrace}" Foreground="{DynamicResource VsBrush.ToolWindowText}" Background="{DynamicResource VsBrush.ToolWindowBackground }"/>
+                        </ScrollViewer>
+                    </TabItem>
+                    <TabItem Header="Demystified">
+                        <ScrollViewer Margin="3" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                            <TextBlock Text="{Binding Demystified}" Foreground="{DynamicResource VsBrush.ToolWindowText}" Background="{DynamicResource VsBrush.ToolWindowBackground }"/>
+                        </ScrollViewer>
+                    </TabItem>
+                </TabControl>
             </Grid>
         </DataTemplate>
     </DataTemplate.Resources>
