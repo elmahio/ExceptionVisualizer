@@ -4,7 +4,8 @@
 		<Identity Id="ExceptionVisualizerVsix.59bb613d-3a6f-4cc0-90ae-e31743f8efde" Version="0.1.0" Language="en-US" Publisher="elmahio" />
 		<DisplayName>Exception Visualizer</DisplayName>
 		<Description>Exception Debug Visualizer for Visual Studio.</Description>
-		<MoreInfo>https://github.com/elmahio/ExceptionVisualizer</MoreInfo>
+		<Icon>icon.png</Icon>
+		<Tags>visualizer, exception, debug, debugging</Tags>
 		<Preview>true</Preview>
 	</Metadata>
 	<Installation>
