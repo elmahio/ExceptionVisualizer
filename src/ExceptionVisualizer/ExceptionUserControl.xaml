@@ -67,7 +67,7 @@
                     </TabItem>
                     <TabItem Header="Data" Visibility="{Binding ShowData}">
                         <ScrollViewer Margin="3" VerticalScrollBarVisibility="Auto">
-                            <DataGrid ItemsSource="{Binding Data}" RowHeaderWidth="0" BorderThickness="0" GridLinesVisibility="None" AutoGenerateColumns="False" IsReadOnly="True" MaxHeight="90" CanUserAddRows="False" CanUserDeleteRows="False" Background="{DynamicResource VsBrush.ToolWindowBackground}" Foreground="{DynamicResource VsBrush.ToolWindowText}" VerticalAlignment="Top">
+                            <DataGrid ItemsSource="{Binding Data}" RowHeaderWidth="0" BorderThickness="0" GridLinesVisibility="None" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" Background="{DynamicResource VsBrush.ToolWindowBackground}" Foreground="{DynamicResource VsBrush.ToolWindowText}" VerticalAlignment="Stretch">
                                 <DataGrid.ColumnHeaderStyle>
                                     <Style TargetType="{x:Type DataGridColumnHeader}">
                                         <Setter Property="Background" Value="{DynamicResource VsBrush.ToolWindowBackground }"/>
@@ -110,7 +110,7 @@
                     </TabItem>
                     <TabItem Header="Properties" Visibility="{Binding ShowProperties}">
                         <ScrollViewer Margin="3" VerticalScrollBarVisibility="Auto">
-                            <DataGrid ItemsSource="{Binding Properties}" RowHeaderWidth="0" BorderThickness="0" GridLinesVisibility="None" AutoGenerateColumns="False" IsReadOnly="True" MaxHeight="90" CanUserAddRows="False" CanUserDeleteRows="False" Background="{DynamicResource VsBrush.ToolWindowBackground}" Foreground="{DynamicResource VsBrush.ToolWindowText}" VerticalAlignment="Top">
+                            <DataGrid ItemsSource="{Binding Properties}" RowHeaderWidth="0" BorderThickness="0" GridLinesVisibility="None" AutoGenerateColumns="False" IsReadOnly="True" MaxHeight="90" CanUserAddRows="False" CanUserDeleteRows="False" Background="{DynamicResource VsBrush.ToolWindowBackground}" Foreground="{DynamicResource VsBrush.ToolWindowText}" VerticalAlignment="Stretch">
                                 <DataGrid.ColumnHeaderStyle>
                                     <Style TargetType="{x:Type DataGridColumnHeader}">
                                         <Setter Property="Background" Value="{DynamicResource VsBrush.ToolWindowBackground }"/>
