@@ -24,7 +24,13 @@ namespace ExceptionVisualizer.Models
         public ObservableCollection<DataViewModel> Data { get; set; } = new ObservableCollection<DataViewModel>();
 
         [DataMember]
+        public ObservableCollection<DataViewModel> Properties { get; set; } = new ObservableCollection<DataViewModel>();
+
+        [DataMember]
         public Visibility ShowData { get; set; } = Visibility.Collapsed;
+
+        [DataMember]
+        public Visibility ShowProperties { get; set; } = Visibility.Collapsed;
 
         [DataMember]
         public ObservableCollection<ExceptionViewModel> InnerExceptions { get; set; } = new ObservableCollection<ExceptionViewModel>();

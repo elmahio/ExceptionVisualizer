@@ -5,7 +5,6 @@
     <DataTemplate.Resources>
         <Style TargetType="TreeView" BasedOn="{StaticResource {x:Static styles:VsResourceKeys.ThemedDialogTreeViewStyleKey}}" />
         <Style TargetType="TextBox" BasedOn="{StaticResource {x:Static styles:VsResourceKeys.TextBoxStyleKey}}" />
-        <Style TargetType="TabItem" BasedOn="{StaticResource {x:Static styles:VsResourceKeys.ThemedDialogTabItemNavigationStyleKey}}" />
         <DataTemplate x:Key="CaptureTemplate">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -15,8 +14,6 @@
                     <RowDefinition Height="30"></RowDefinition>
                     <RowDefinition MaxHeight="400" Height="Auto"></RowDefinition>
                     <RowDefinition Height="80"></RowDefinition>
-                    <RowDefinition MaxHeight="20" Height="Auto"></RowDefinition>
-                    <RowDefinition MaxHeight="90" Height="Auto"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <TextBlock Text="{Binding Type}" FontSize="16" VerticalAlignment="Center" Grid.Row="0" Margin="3"/>
@@ -57,55 +54,7 @@
                     <TextBlock Text="{Binding HResult}" Grid.Column="1" Grid.Row="2"></TextBlock>
                     <TextBlock Text="{Binding HelpLink}" Grid.Column="1" Grid.Row="3"></TextBlock>
                 </Grid>
-                <TextBlock Grid.Row="3" Margin="3" Visibility="{Binding ShowData}">
-                    <TextBlock.Inlines>
-                        <Run FontWeight="Bold" Text="Data" />
-                    </TextBlock.Inlines>
-                </TextBlock>
-                <ScrollViewer Grid.Row="4" Margin="3" VerticalScrollBarVisibility="Auto" Visibility="{Binding ShowData}">
-                    <DataGrid ItemsSource="{Binding Data}" RowHeaderWidth="0" BorderThickness="0" GridLinesVisibility="None" AutoGenerateColumns="False"
-                              IsReadOnly="True" MaxHeight="90" CanUserAddRows="False" CanUserDeleteRows="False"
-                              Background="{DynamicResource VsBrush.ToolWindowBackground}" Foreground="{DynamicResource VsBrush.ToolWindowText}">
-                        <DataGrid.ColumnHeaderStyle>
-                            <Style TargetType="{x:Type DataGridColumnHeader}">
-                                <Setter Property="Background" Value="{DynamicResource VsBrush.ToolWindowBackground }"/>
-                                <Setter Property="Foreground" Value="{DynamicResource VsBrush.ToolWindowText}" />
-                                <Setter Property="BorderBrush" Value="{DynamicResource VsBrush.ToolWindowBorder}"/>
-                                <Setter Property="BorderThickness" Value="0 0 1 1"/>
-                                <Setter Property="Padding" Value="5"/>
-                            </Style>
-                        </DataGrid.ColumnHeaderStyle>
-                        <DataGrid.RowStyle>
-                            <Style TargetType="{x:Type DataGridRow}">
-                                <Style.Triggers>
-                                    <Trigger Property="IsSelected" Value="True">
-                                        <Setter Property="Background" Value="{DynamicResource VsBrush.Hightlight}"/>
-                                        <Setter Property="Foreground" Value="{DynamicResource VsBrush.HightlightText}"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </DataGrid.RowStyle>
-                        <DataGrid.CellStyle>
-                            <Style TargetType="{x:Type DataGridCell}">
-                                <Setter Property="Background" Value="{DynamicResource VsBrush.ToolWindowBackground }"/>
-                                <Setter Property="Foreground" Value="{DynamicResource VsBrush.ToolWindowText}" />
-                                <Setter Property="BorderThickness" Value="0"/>
-                                <Setter Property="Padding" Value="4"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsSelected" Value="True">
-                                        <Setter Property="Background" Value="{DynamicResource VsBrush.Highlight}"/>
-                                        <Setter Property="Foreground" Value="{DynamicResource VsBrush.HighlightText}"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </DataGrid.CellStyle>
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Key" MinWidth="100" Binding="{Binding Key}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Value" Width="* " Binding="{Binding Value}"></DataGridTextColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </ScrollViewer>
-                <TabControl Grid.Row="5" Margin="3" Foreground="{DynamicResource VsBrush.ToolWindowText}" Background="{DynamicResource VsBrush.ToolWindowBackground }">
+                <TabControl Grid.Row="3" Margin="3" Foreground="{DynamicResource VsBrush.ToolWindowText}" Background="{DynamicResource VsBrush.ToolWindowBackground }">
                     <TabItem Header="Stack Trace">
                         <ScrollViewer Margin="3" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                             <TextBlock Text="{Binding StackTrace}" Foreground="{DynamicResource VsBrush.ToolWindowText}" Background="{DynamicResource VsBrush.ToolWindowBackground }"/>
@@ -114,6 +63,92 @@
                     <TabItem Header="Demystified">
                         <ScrollViewer Margin="3" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                             <TextBlock Text="{Binding Demystified}" Foreground="{DynamicResource VsBrush.ToolWindowText}" Background="{DynamicResource VsBrush.ToolWindowBackground }"/>
+                        </ScrollViewer>
+                    </TabItem>
+                    <TabItem Header="Data" Visibility="{Binding ShowData}">
+                        <ScrollViewer Margin="3" VerticalScrollBarVisibility="Auto">
+                            <DataGrid ItemsSource="{Binding Data}" RowHeaderWidth="0" BorderThickness="0" GridLinesVisibility="None" AutoGenerateColumns="False" IsReadOnly="True" MaxHeight="90" CanUserAddRows="False" CanUserDeleteRows="False" Background="{DynamicResource VsBrush.ToolWindowBackground}" Foreground="{DynamicResource VsBrush.ToolWindowText}" VerticalAlignment="Top">
+                                <DataGrid.ColumnHeaderStyle>
+                                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                                        <Setter Property="Background" Value="{DynamicResource VsBrush.ToolWindowBackground }"/>
+                                        <Setter Property="Foreground" Value="{DynamicResource VsBrush.ToolWindowText}" />
+                                        <Setter Property="BorderBrush" Value="{DynamicResource VsBrush.ToolWindowBorder}"/>
+                                        <Setter Property="BorderThickness" Value="0 0 1 1"/>
+                                        <Setter Property="Padding" Value="5"/>
+                                    </Style>
+                                </DataGrid.ColumnHeaderStyle>
+                                <DataGrid.RowStyle>
+                                    <Style TargetType="{x:Type DataGridRow}">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter Property="Background" Value="{DynamicResource VsBrush.Hightlight}"/>
+                                                <Setter Property="Foreground" Value="{DynamicResource VsBrush.HightlightText}"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGrid.RowStyle>
+                                <DataGrid.CellStyle>
+                                    <Style TargetType="{x:Type DataGridCell}">
+                                        <Setter Property="Background" Value="{DynamicResource VsBrush.ToolWindowBackground }"/>
+                                        <Setter Property="Foreground" Value="{DynamicResource VsBrush.ToolWindowText}" />
+                                        <Setter Property="BorderThickness" Value="0"/>
+                                        <Setter Property="Padding" Value="4"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter Property="Background" Value="{DynamicResource VsBrush.Highlight}"/>
+                                                <Setter Property="Foreground" Value="{DynamicResource VsBrush.HighlightText}"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGrid.CellStyle>
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Key" MinWidth="100" Binding="{Binding Key}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Value" Width="* " Binding="{Binding Value}"></DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </ScrollViewer>
+                    </TabItem>
+                    <TabItem Header="Properties" Visibility="{Binding ShowProperties}">
+                        <ScrollViewer Margin="3" VerticalScrollBarVisibility="Auto">
+                            <DataGrid ItemsSource="{Binding Properties}" RowHeaderWidth="0" BorderThickness="0" GridLinesVisibility="None" AutoGenerateColumns="False" IsReadOnly="True" MaxHeight="90" CanUserAddRows="False" CanUserDeleteRows="False" Background="{DynamicResource VsBrush.ToolWindowBackground}" Foreground="{DynamicResource VsBrush.ToolWindowText}" VerticalAlignment="Top">
+                                <DataGrid.ColumnHeaderStyle>
+                                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                                        <Setter Property="Background" Value="{DynamicResource VsBrush.ToolWindowBackground }"/>
+                                        <Setter Property="Foreground" Value="{DynamicResource VsBrush.ToolWindowText}" />
+                                        <Setter Property="BorderBrush" Value="{DynamicResource VsBrush.ToolWindowBorder}"/>
+                                        <Setter Property="BorderThickness" Value="0 0 1 1"/>
+                                        <Setter Property="Padding" Value="5"/>
+                                    </Style>
+                                </DataGrid.ColumnHeaderStyle>
+                                <DataGrid.RowStyle>
+                                    <Style TargetType="{x:Type DataGridRow}">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter Property="Background" Value="{DynamicResource VsBrush.Hightlight}"/>
+                                                <Setter Property="Foreground" Value="{DynamicResource VsBrush.HightlightText}"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGrid.RowStyle>
+                                <DataGrid.CellStyle>
+                                    <Style TargetType="{x:Type DataGridCell}">
+                                        <Setter Property="Background" Value="{DynamicResource VsBrush.ToolWindowBackground }"/>
+                                        <Setter Property="Foreground" Value="{DynamicResource VsBrush.ToolWindowText}" />
+                                        <Setter Property="BorderThickness" Value="0"/>
+                                        <Setter Property="Padding" Value="4"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter Property="Background" Value="{DynamicResource VsBrush.Highlight}"/>
+                                                <Setter Property="Foreground" Value="{DynamicResource VsBrush.HighlightText}"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGrid.CellStyle>
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Key" MinWidth="100" Binding="{Binding Key}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Value" Width="* " Binding="{Binding Value}"></DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
                         </ScrollViewer>
                     </TabItem>
                 </TabControl>

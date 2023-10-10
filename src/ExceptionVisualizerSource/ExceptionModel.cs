@@ -23,6 +23,9 @@ namespace ExceptionVisualizerSource
         public List<KeyValuePair<string, string>> Data { get; set; } = new List<KeyValuePair<string, string>>();
 
         [DataMember]
+        public List<KeyValuePair<string, string>> Properties { get; set; } = new List<KeyValuePair<string, string>>();
+
+        [DataMember]
         public List<ExceptionModel> InnerExceptions { get; set; } = new List<ExceptionModel>();
 
         [DataMember]

@@ -53,7 +53,13 @@ namespace ExceptionVisualizer
                     Key = d.Key,
                     Value = d.Value,
                 })),
+                Properties = new ObservableCollection<DataViewModel>(exception.Properties.Select(d => new DataViewModel
+                {
+                    Key = d.Key,
+                    Value = d.Value,
+                })),
                 ShowData = exception.Data.Count > 0 ? Visibility.Visible : Visibility.Collapsed,
+                ShowProperties = exception.Properties.Count > 0 ? Visibility.Visible : Visibility.Collapsed,
                 HelpLink = exception.HelpLink,
                 HResult = exception.HResult,
                 Message = exception.Message,
