@@ -23,13 +23,20 @@ namespace ExceptionVisualizer
         {
             _ = Task.Run(async () =>
             {
-                ExceptionModel? exception = await this.visualizerTarget.ObjectSource.RequestDataAsync<ExceptionModel?>(jsonSerializer: null, CancellationToken.None);
-                if (exception != null)
+                try
                 {
-                    var viewModel = ToViewModel(exception);
-                    ViewModel.Exceptions.Add(viewModel);
-                    Subscribe(viewModel);
-                    viewModel.IsSelected = true;
+                    ExceptionModel? exception = await this.visualizerTarget.ObjectSource.RequestDataAsync<ExceptionModel?>(jsonSerializer: null, CancellationToken.None);
+                    if (exception != null)
+                    {
+                        var viewModel = ToViewModel(exception);
+                        ViewModel.Exceptions.Add(viewModel);
+                        Subscribe(viewModel);
+                        viewModel.IsSelected = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Telemetry.TrackException(ex);
                 }
             });
             return Task.CompletedTask;

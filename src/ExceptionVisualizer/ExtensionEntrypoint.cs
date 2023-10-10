@@ -22,7 +22,16 @@ namespace ExceptionVisualizer
         /// <inheritdoc />
         protected override void InitializeServices(IServiceCollection serviceCollection)
         {
-            base.InitializeServices(serviceCollection);
+            Telemetry.Initialize(ExtensionAssemblyVersion?.ToString());
+            try
+            {
+                base.InitializeServices(serviceCollection);
+            }
+            catch (Exception ex)
+            {
+                Telemetry.TrackException(ex);
+                throw;
+            }
 
             // You can configure dependency injection here by adding services to the serviceCollection.
         }

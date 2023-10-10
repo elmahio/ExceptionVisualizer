@@ -12,6 +12,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Elmah.Io.Client" Version="5.0.66" />
 		<PackageReference Include="Microsoft.VisualStudio.Extensibility.Sdk" Version="17.8.13-preview-1" />
 		<PackageReference Include="Microsoft.VisualStudio.Extensibility.Build" Version="17.8.13-preview-1" />
 	</ItemGroup>
