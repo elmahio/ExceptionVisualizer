@@ -1,5 +1,8 @@
-﻿using System.Collections.ObjectModel;
+﻿using Microsoft.VisualStudio.Extensibility;
+using Microsoft.VisualStudio.Extensibility.UI;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.Serialization;
 using System.Windows;
 
@@ -8,6 +11,9 @@ namespace ExceptionVisualizer.Models
     [DataContract]
     public class ExceptionViewModel : INotifyPropertyChanged
     {
+        [DataMember]
+        public IAsyncCommand Navigate { get; set; } = new NavigateCommand();
+
         [DataMember]
         public string Message { get; internal set; }
 
@@ -64,5 +70,21 @@ namespace ExceptionVisualizer.Models
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private class NavigateCommand : IAsyncCommand
+        {
+            public bool CanExecute => true;
+
+            public Task ExecuteAsync(object? parameter, IClientContext clientContext, CancellationToken cancellationToken)
+            {
+                var hyperlink = parameter as string;
+                if (!string.IsNullOrWhiteSpace(hyperlink) && Uri.TryCreate(hyperlink, UriKind.Absolute, out var url))
+                {
+                    Process.Start(new ProcessStartInfo { FileName = url.AbsoluteUri, UseShellExecute = true });
+                }
+
+                return Task.CompletedTask;
+            }
+        }
     }
 }
