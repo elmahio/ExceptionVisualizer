@@ -34,6 +34,10 @@ namespace ExceptionVisualizer
                         viewModel.IsSelected = true;
                     }
                 }
+                catch (StreamJsonRpc.RemoteInvocationException rie) when (rie.Message.Contains("Could not load file or assembly 'Newtonsoft.Json"))
+                {
+                    MessageBox.Show("There's currently a bug in Visual Studio causing the Exception Visualizer extension to crash when debugging projects containing a reference to Newtonsoft.Json older than version 13. Either upgrade to version 13 of Newtonsoft.Json or follow this issue on GitHub: https://github.com/microsoft/VSExtensibility/issues/248.");
+                }
                 catch (Exception ex)
                 {
                     Telemetry.TrackException(ex);
