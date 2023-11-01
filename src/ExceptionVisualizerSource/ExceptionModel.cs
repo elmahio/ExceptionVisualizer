@@ -35,7 +35,7 @@ namespace ExceptionVisualizerSource
         public string TargetSite { get; internal set; }
 
         [DataMember]
-        public string HResult { get; internal set; }
+        public int HResult { get; internal set; }
 
         [DataMember]
         public string HelpLink { get; internal set; }

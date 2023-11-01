@@ -34,7 +34,7 @@ namespace ExceptionVisualizerSource
             {
                 Message = e.Message,
                 Type = e.GetType().FullName,
-                HResult = ""+e.HResult,
+                HResult = e.HResult,
                 HelpLink = e.HelpLink,
                 Source = e.Source,
                 StackTrace = e.StackTrace,

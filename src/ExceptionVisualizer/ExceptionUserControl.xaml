@@ -51,7 +51,7 @@
                     </TextBlock>
                     <TextBlock Text="{Binding Source}" Grid.Column="1" Grid.Row="0"></TextBlock>
                     <TextBlock Text="{Binding TargetSite}" Foreground="#cd4b5b" FontFamily="Courier New" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"></TextBlock>
-                    <TextBlock Text="{Binding HResult}" Grid.Column="1" Grid.Row="2"></TextBlock>
+                    <TextBlock Text="{Binding HResultDisplay}" Grid.Column="1" Grid.Row="2"></TextBlock>
                     <TextBlock Grid.Column="1" Grid.Row="3">
                         <Hyperlink Command="{Binding Navigate}" CommandParameter="{Binding HelpLink}">
                             <TextBlock Text="{Binding HelpLink}"></TextBlock>
