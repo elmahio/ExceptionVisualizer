@@ -7,6 +7,10 @@ When debugging applications and an exception is thrown you can view the exceptio
 
 ![Exception Visualizer](screenshot.png)
 
+The Exception Visualizer can be opened from the *Locals* or *QuickView* windows by clicking *View* next to the exception:
+
+![View Exception Visualizer](https://github.com/elmahio/ExceptionVisualizer/assets/563206/8dd68fc6-85f2-416d-a5b2-8f78de57fdbf)
+
 ---
 
 Sponsored by [elmah.io](https://elmah.io).
