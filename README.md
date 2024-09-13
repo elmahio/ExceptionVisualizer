@@ -1,5 +1,4 @@
-Exception Visualizer
-====================
+# <img src="icon.png" style="height: 1em; width: 1em;"> Exception Visualizer ![Build](https://github.com/elmahio/ExceptionVisualizer/actions/workflows/dotnet.yml/badge.svg) ![Visual Studio Marketplace Downloads](https://img.shields.io/visual-studio-marketplace/d/elmahio.exceptioninspector)
 
 Exception Debug Visualizer for Visual Studio.
 
