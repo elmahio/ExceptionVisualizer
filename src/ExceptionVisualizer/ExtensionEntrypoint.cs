@@ -13,7 +13,7 @@ namespace ExceptionVisualizer
         public override ExtensionConfiguration ExtensionConfiguration => new()
         {
             Metadata = new(
-                    id: "ExceptionVisualizer.79fc9a70-ae6e-4c14-8931-ee37a81e5bdf",
+                    id: "ExceptionVisualizerVsix.59bb613d-3a6f-4cc0-90ae-e31743f8efde",
                     version: this.ExtensionAssemblyVersion,
                     publisherName: "elmahio",
                     displayName: "Exception Debugger Visualizer",
