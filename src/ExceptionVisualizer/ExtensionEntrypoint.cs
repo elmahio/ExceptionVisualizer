@@ -16,7 +16,12 @@ namespace ExceptionVisualizer
                     id: "ExceptionVisualizer.79fc9a70-ae6e-4c14-8931-ee37a81e5bdf",
                     version: this.ExtensionAssemblyVersion,
                     publisherName: "elmahio",
-                    displayName: "Exception Debugger Visualizer Extension"),
+                    displayName: "Exception Debugger Visualizer",
+                    description: "Show a debugger visualizer for exceptions in Visual Studio.")
+            {
+                Tags = ["visualizer", "exception", "debug", "debugging"],
+                Icon = "icon.png",
+            }
         };
 
         /// <inheritdoc />

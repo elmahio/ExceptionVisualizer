@@ -1,21 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net6.0-windows</TargetFramework>
+		<AssemblyVersion>0.1.0</AssemblyVersion>
+		<TargetFramework>net8.0-windows</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+		<LangVersion>12</LangVersion>
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 		<DefineConstants>$(DefineConstants);VISUALIZER</DefineConstants>
-
-		<!-- The VisualStudio.Extensibility preview packages are available from the azure-public/vside/msft_consumption feed -->
-		<RestoreAdditionalProjectSources>https://pkgs.dev.azure.com/azure-public/vside/_packaging/msft_consumption/nuget/v3/index.json</RestoreAdditionalProjectSources>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Elmah.Io.Client" Version="5.0.66" />
-		<PackageReference Include="Elmah.Io.HResults" Version="1.0.15" />
-		<PackageReference Include="Microsoft.VisualStudio.Extensibility.Sdk" Version="17.8.13-preview-1" />
-		<PackageReference Include="Microsoft.VisualStudio.Extensibility.Build" Version="17.8.13-preview-1" />
+		<PackageReference Include="Elmah.Io.Client" Version="5.1.76" />
+		<PackageReference Include="Elmah.Io.HResults" Version="1.0.23" />
+		<PackageReference Include="Microsoft.VisualStudio.Extensibility.Sdk" Version="17.11.40261" />
+		<PackageReference Include="Microsoft.VisualStudio.Extensibility.Build" Version="17.11.40261" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -28,10 +27,15 @@
 		<Content Include="bin\$(Configuration)\net6.0-windows\Ben.Demystifier.dll" Link="netstandard2.0\Ben.Demystifier.dll">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
+
+		<None Remove="icon.png" />
+		<Content Include="icon.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\ExceptionVisualizerSource\ExceptionVisualizerSource.csproj" />
+		<ProjectReference Include="..\ExceptionVisualizerSource\ExceptionVisualizerSource.csproj" />
 	</ItemGroup>
 
 </Project>
