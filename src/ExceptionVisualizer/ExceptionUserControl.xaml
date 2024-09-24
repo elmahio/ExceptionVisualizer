@@ -12,12 +12,14 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"></RowDefinition>
-                    <RowDefinition MaxHeight="400" Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="80"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <TextBlock Text="{Binding Type}" FontSize="16" VerticalAlignment="Center" Grid.Row="0" Margin="3"/>
-                <TextBlock Text="{Binding Message}" VerticalAlignment="Center" Grid.Row="1" Margin="3"/>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Grid.Row="1" Margin="3" MaxHeight="100">
+                    <TextBlock Text="{Binding Message}" TextWrapping="Wrap"/>
+                </ScrollViewer>
                 <Grid Grid.Row="2" Margin="3">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="70"></ColumnDefinition>
