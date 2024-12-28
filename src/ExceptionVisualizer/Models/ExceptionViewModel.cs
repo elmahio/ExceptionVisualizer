@@ -55,8 +55,25 @@ namespace ExceptionVisualizer.Models
         {
             get
             {
+                return $"0x{HResult:X8}";
+            }
+        }
+        [DataMember]
+        public string? HResultFacility
+        {
+            get
+            {
                 var hResult = Elmah.Io.HResults.HResult.Parse(HResult);
-                return $"0x{HResult.ToString("X8")} ({hResult.Facility.Name} / {hResult.Code.Name})";
+                return hResult.Facility.Name;
+            }
+        }
+        [DataMember]
+        public string? HResultCode
+        {
+            get
+            {
+                var hResult = Elmah.Io.HResults.HResult.Parse(HResult);
+                return hResult.Code.Name;
             }
         }
 

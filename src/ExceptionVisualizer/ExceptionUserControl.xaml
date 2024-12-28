@@ -53,7 +53,30 @@
                     </TextBlock>
                     <TextBlock Text="{Binding Source}" Grid.Column="1" Grid.Row="0"></TextBlock>
                     <TextBlock Text="{Binding TargetSite}" Foreground="#cd4b5b" FontFamily="Courier New" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"></TextBlock>
-                    <TextBlock Text="{Binding HResultDisplay}" Grid.Column="1" Grid.Row="2"></TextBlock>
+                    <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" Cursor="Help">
+                        <StackPanel.ToolTip>
+                            <ToolTip>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Column="0" Text="Facility" FontWeight="Bold"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding HResultFacility}" Foreground="#cd4b5b" FontFamily="Courier New" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Error Code" FontWeight="Bold" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding HResultCode}" Foreground="#cd4b5b" FontFamily="Courier New" VerticalAlignment="Center"/>
+                                </Grid>
+                            </ToolTip>
+                        </StackPanel.ToolTip>
+                        <TextBlock Text="{Binding HResultDisplay}" Foreground="#cd4b5b" FontFamily="Courier New" VerticalAlignment="Center">
+                        </TextBlock>
+                        <TextBlock Text="ℹ️" Margin="3,0,0,0">
+                        </TextBlock>
+                    </StackPanel>
                     <TextBlock Grid.Column="1" Grid.Row="3">
                         <Hyperlink Command="{Binding Navigate}" CommandParameter="{Binding HelpLink}">
                             <TextBlock Text="{Binding HelpLink}"></TextBlock>
