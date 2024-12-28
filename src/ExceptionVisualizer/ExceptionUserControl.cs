@@ -40,6 +40,7 @@ namespace ExceptionVisualizer
                 }
                 catch (Exception ex)
                 {
+                    MessageBox.Show($"ExceptionVisualizer failed with exception:\n{ex}");
                     Telemetry.TrackException(ex);
                 }
             });
