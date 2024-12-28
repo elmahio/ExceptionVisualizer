@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace ExceptionVisualizerSource
@@ -20,13 +19,13 @@ namespace ExceptionVisualizerSource
         public string Demystified { get; set; }
 
         [DataMember]
-        public List<KeyValuePair<string, string>> Data { get; set; } = new List<KeyValuePair<string, string>>();
+        public List<KeyValuePair<string, string>> Data { get; set; } = [];
 
         [DataMember]
-        public List<KeyValuePair<string, string>> Properties { get; set; } = new List<KeyValuePair<string, string>>();
+        public List<KeyValuePair<string, string>> Properties { get; set; } = [];
 
         [DataMember]
-        public List<ExceptionModel> InnerExceptions { get; set; } = new List<ExceptionModel>();
+        public List<ExceptionModel> InnerExceptions { get; set; } = [];
 
         [DataMember]
         public string Source { get; internal set; }
