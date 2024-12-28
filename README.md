@@ -6,6 +6,14 @@ When debugging applications and an exception is thrown you can view the exceptio
 
 ![Exception Visualizer](screenshot.png)
 
+The popup offers a range of features like parsing of HResults:
+
+![Show parsed HResult](screenshot2.png)
+
+Aggreate and inner exceptions are nested in the left side of the screen:
+
+![Nested exceptions](screenshot3.png)
+
 The Exception Visualizer can be opened from the *Locals* or *QuickView* windows by clicking *View* next to the exception:
 
 ![View Exception Visualizer](https://github.com/elmahio/ExceptionVisualizer/assets/563206/8dd68fc6-85f2-416d-a5b2-8f78de57fdbf)
