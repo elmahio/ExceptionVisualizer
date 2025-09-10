@@ -41,8 +41,7 @@ jobs:
       if: ${{ github.event_name == 'push' }}
       uses: softprops/action-gh-release@v2
       with:
-        files: |
-          src\ExceptionVisualizer\bin\Release\net8.0-windows\ExceptionVisualizer.vsix
+        files: .\src\ExceptionVisualizer\bin\Release\net8.0-windows\ExceptionVisualizer.vsix
         tag_name: 0.1.${{ github.run_number }}
         name: 0.1.${{ github.run_number }}
         draft: false
