@@ -21,6 +21,7 @@ namespace ExceptionVisualizer
             {
                 Tags = ["visualizer", "exception", "debug", "debugging"],
                 Icon = "icon.png",
+                InstallationTargetVersion = "[17.12,19.0)",
             }
         };
 
