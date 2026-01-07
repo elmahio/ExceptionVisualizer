@@ -7,7 +7,7 @@ namespace ExceptionVisualizerSource
     public class ExceptionModel
     {
         [DataMember]
-        public string Message { get; internal set; }
+        public string Message { get; set; }
 
         [DataMember]
         public string Type { get; set; }
@@ -28,15 +28,15 @@ namespace ExceptionVisualizerSource
         public List<ExceptionModel> InnerExceptions { get; set; } = [];
 
         [DataMember]
-        public string Source { get; internal set; }
+        public string Source { get; set; }
 
         [DataMember]
-        public string TargetSite { get; internal set; }
+        public string TargetSite { get; set; }
 
         [DataMember]
-        public int HResult { get; internal set; }
+        public int HResult { get; set; }
 
         [DataMember]
-        public string HelpLink { get; internal set; }
+        public string HelpLink { get; set; }
     }
 }
