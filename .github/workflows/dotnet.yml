@@ -13,17 +13,17 @@ jobs:
     runs-on: windows-2025
 
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v7
 
-    - uses: nuget/setup-nuget@v2
+    - uses: nuget/setup-nuget@v3
 
     - name: Add msbuild to PATH
-      uses: microsoft/setup-msbuild@v2
+      uses: microsoft/setup-msbuild@v3
 
     - name: Update version
       run: |
         (Get-Content -Path src\ExceptionVisualizer\ExceptionVisualizer.csproj) |
-          ForEach-Object {$_ -Replace '<AssemblyVersion>0.1.0</AssemblyVersion>', '<AssemblyVersion>0.1.${{ github.run_number }}</AssemblyVersion>'} |
+          ForEach-Object {$_ -Replace '<AssemblyVersion>0.2.0</AssemblyVersion>', '<AssemblyVersion>0.2.${{ github.run_number }}</AssemblyVersion>'} |
             Set-Content -Path src\ExceptionVisualizer\ExceptionVisualizer.csproj
 
     - name: Restore
@@ -32,18 +32,18 @@ jobs:
     - name: Build
       run: msbuild /p:configuration=Release /p:DeployExtension=false /p:ZipPackageCompressionLevel=normal /v:m
 
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v7
       with:
         name: ExceptionVisualizer.vsix
         path: src\ExceptionVisualizer\bin\Release\net8.0-windows\ExceptionVisualizer.vsix
 
     - name: Create Release
       if: ${{ github.event_name == 'push' }}
-      uses: softprops/action-gh-release@v2
+      uses: softprops/action-gh-release@v3
       with:
         files: ./src/ExceptionVisualizer/bin/Release/net8.0-windows/ExceptionVisualizer.vsix
-        tag_name: 0.1.${{ github.run_number }}
-        name: 0.1.${{ github.run_number }}
+        tag_name: 0.2.${{ github.run_number }}
+        name: 0.2.${{ github.run_number }}
         draft: false
         fail_on_unmatched_files: true
         generate_release_notes: true

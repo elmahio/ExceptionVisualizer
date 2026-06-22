@@ -1,4 +1,4 @@
-﻿using ExceptionVisualizer.Models;
+using ExceptionVisualizer.Models;
 using ExceptionVisualizerSource;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -28,6 +28,7 @@ namespace ExceptionVisualizer
                 Message = exception.Message,
                 Source = exception.Source,
                 StackTrace = exception.StackTrace,
+                StackFrames = ParseFrames(exception.StackTrace),
                 TargetSite = exception.TargetSite,
                 Demystified = exception.Demystified,
                 @Type = exception.Type,
@@ -38,6 +39,38 @@ namespace ExceptionVisualizer
             }
 
             return viewModel;
+        }
+
+        private static ObservableCollection<StackFrameViewModel> ParseFrames(string? stackTrace)
+        {
+            var frames = new ObservableCollection<StackFrameViewModel>();
+            if (string.IsNullOrEmpty(stackTrace)) return frames;
+
+            foreach (var parsed in StackTraceParser.Parse(stackTrace,
+                (frame, type, method, paramList, parameters, file, lineNum) =>
+                    new { Type = type, Method = method, ParameterList = paramList, File = file, Line = lineNum }))
+            {
+                var lastDot = parsed.Type.LastIndexOf('.');
+                var hasFile = !string.IsNullOrEmpty(parsed.File);
+
+                frames.Add(new StackFrameViewModel
+                {
+                    ParsedVisibility = Visibility.Visible,
+                    Prefix = "   at ",
+                    Namespace = lastDot >= 0 ? parsed.Type[..(lastDot + 1)] : string.Empty,
+                    ClassName = lastDot >= 0 ? parsed.Type[(lastDot + 1)..] : parsed.Type,
+                    MethodDot = ".",
+                    MethodName = parsed.Method,
+                    Parameters = parsed.ParameterList,
+                    InPart = hasFile ? " in " : string.Empty,
+                    FilePath = parsed.File,
+                    FileLine = parsed.Line,
+                    FileNavigationParam = hasFile ? $"{parsed.File}|{parsed.Line}" : string.Empty,
+                    FileLinkVisibility = hasFile ? Visibility.Visible : Visibility.Collapsed,
+                });
+            }
+
+            return frames;
         }
     }
 }

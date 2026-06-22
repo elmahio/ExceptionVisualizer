@@ -85,13 +85,57 @@
                 </Grid>
                 <TabControl Grid.Row="3" Margin="3" Foreground="{DynamicResource VsBrush.ToolWindowText}" Background="{DynamicResource VsBrush.ToolWindowBackground }">
                     <TabItem Header="Stack Trace">
-                        <ScrollViewer Margin="3" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                            <TextBlock Text="{Binding StackTrace}" Foreground="{DynamicResource VsBrush.ToolWindowText}" Background="{DynamicResource VsBrush.ToolWindowBackground }"/>
-                        </ScrollViewer>
+                        <ListBox ItemsSource="{Binding StackFrames}"
+                                 SelectedItem="{Binding SelectedFrame, Mode=TwoWay}"
+                                 Margin="3" Background="{DynamicResource VsBrush.ToolWindowBackground}"
+                                 BorderThickness="0"
+                                 ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding RawText}" FontFamily="Courier New"
+                                                   Visibility="{Binding RawTextVisibility}"
+                                                   Foreground="{DynamicResource VsBrush.ToolWindowText}"/>
+                                        <TextBlock Text="{Binding Prefix}" FontFamily="Courier New"
+                                                   Visibility="{Binding ParsedVisibility}"
+                                                   Foreground="#808080"/>
+                                        <TextBlock Text="{Binding Namespace}" FontFamily="Courier New"
+                                                   Visibility="{Binding ParsedVisibility}"
+                                                   Foreground="#0a8472" FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding ClassName}" FontFamily="Courier New"
+                                                   Visibility="{Binding ParsedVisibility}"
+                                                   Foreground="#0a8472" FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding MethodDot}" FontFamily="Courier New"
+                                                   Visibility="{Binding ParsedVisibility}"
+                                                   Foreground="#808080"/>
+                                        <TextBlock Text="{Binding MethodName}" FontFamily="Courier New"
+                                                   Visibility="{Binding ParsedVisibility}"
+                                                   Foreground="#70c9ba" FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding Parameters}" FontFamily="Courier New"
+                                                   Visibility="{Binding ParsedVisibility}"
+                                                   Foreground="#ffffff"/>
+                                        <TextBlock Text="{Binding InPart}" FontFamily="Courier New"
+                                                   Visibility="{Binding ParsedVisibility}"
+                                                   Foreground="#808080"/>
+                                        <TextBlock Text="{Binding FilePath}" FontFamily="Courier New"
+                                                   Visibility="{Binding FileLinkVisibility}"
+                                                   Foreground="#f8b068"/>
+                                        <TextBlock Text=":line " FontFamily="Courier New"
+                                                   Visibility="{Binding FileLinkVisibility}"
+                                                   Foreground="#808080"/>
+                                        <TextBlock Text="{Binding FileLine}" FontFamily="Courier New"
+                                                   Visibility="{Binding FileLinkVisibility}"
+                                                   Foreground="#ff4f68"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
                     </TabItem>
                     <TabItem Header="Demystified">
-                        <ScrollViewer Margin="3" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                            <TextBlock Text="{Binding Demystified}" Foreground="{DynamicResource VsBrush.ToolWindowText}" Background="{DynamicResource VsBrush.ToolWindowBackground }"/>
+                        <ScrollViewer Margin="3" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                            <TextBlock Text="{Binding Demystified}" FontFamily="Courier New"
+                                       Foreground="{DynamicResource VsBrush.ToolWindowText}"
+                                       TextWrapping="NoWrap"/>
                         </ScrollViewer>
                     </TabItem>
                     <TabItem Header="Data" Visibility="{Binding ShowData}">

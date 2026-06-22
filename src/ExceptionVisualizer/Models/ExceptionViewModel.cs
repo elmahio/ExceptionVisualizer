@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.Extensibility;
+using Microsoft.VisualStudio.Extensibility;
 using Microsoft.VisualStudio.Extensibility.UI;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -14,6 +14,19 @@ namespace ExceptionVisualizer.Models
         [DataMember]
         public IAsyncCommand Navigate { get; set; } = new NavigateCommand();
 
+        private StackFrameViewModel? selectedFrame;
+
+        [DataMember]
+        public StackFrameViewModel? SelectedFrame
+        {
+            get => selectedFrame;
+            set
+            {
+                selectedFrame = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedFrame)));
+            }
+        }
+
         [DataMember]
         public string Message { get; internal set; }
 
@@ -22,6 +35,9 @@ namespace ExceptionVisualizer.Models
 
         [DataMember]
         public string StackTrace { get; set; }
+
+        [DataMember]
+        public ObservableCollection<StackFrameViewModel> StackFrames { get; set; } = new ObservableCollection<StackFrameViewModel>();
 
         [DataMember]
         public string Demystified { get; set; }
@@ -58,6 +74,7 @@ namespace ExceptionVisualizer.Models
                 return $"0x{HResult:X8}";
             }
         }
+
         [DataMember]
         public string? HResultFacility
         {
@@ -67,6 +84,7 @@ namespace ExceptionVisualizer.Models
                 return hResult.Facility.Name;
             }
         }
+
         [DataMember]
         public string? HResultCode
         {

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<AssemblyVersion>0.1.0</AssemblyVersion>
+		<AssemblyVersion>0.2.0</AssemblyVersion>
 		<TargetFramework>net8.0-windows</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
@@ -11,10 +11,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Elmah.Io.Client" Version="5.2.118" />
-		<PackageReference Include="Elmah.Io.HResults" Version="1.0.29" />
+		<PackageReference Include="Elmah.Io.Client" Version="5.3.131" />
+		<PackageReference Include="Elmah.Io.HResults" Version="1.0.40" />
 		<PackageReference Include="Microsoft.VisualStudio.Extensibility.Sdk" Version="17.12.40390" />
 		<PackageReference Include="Microsoft.VisualStudio.Extensibility.Build" Version="17.12.40390" />
+		<PackageReference Include="StackTraceParser.Source" Version="1.3.1" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -33,5 +34,5 @@
 			<Content Include="@(VisualizerSourceDlls)" Link="netstandard2.0\%(Filename)%(Extension)" />
 		</ItemGroup>
 	</Target>
-	
+
 </Project>
