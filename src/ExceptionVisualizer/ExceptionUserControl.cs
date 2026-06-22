@@ -63,6 +63,9 @@ namespace ExceptionVisualizer
                 _ = NavigateToFrame(param);
             }
 
+            if (e.PropertyName == nameof(ExceptionViewModel.MyCodeOnly))
+                model.ApplyFilter();
+
             if (model.IsSelected)
                 ViewModel.SelectedItem = model;
         }

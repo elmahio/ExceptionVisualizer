@@ -14,6 +14,9 @@ namespace ExceptionVisualizer.Models
         [DataMember]
         public IAsyncCommand Navigate { get; set; } = new NavigateCommand();
 
+        [DataMember]
+        public IAsyncCommand Copy { get; set; } = new CopyCommand();
+
         private StackFrameViewModel? selectedFrame;
 
         [DataMember]
@@ -37,7 +40,43 @@ namespace ExceptionVisualizer.Models
         public string StackTrace { get; set; }
 
         [DataMember]
+        public string FormattedStackTrace => $"{Type}: {Message}\r\n{StackTrace}";
+
+        [DataMember]
         public ObservableCollection<StackFrameViewModel> StackFrames { get; set; } = new ObservableCollection<StackFrameViewModel>();
+
+        private ObservableCollection<StackFrameViewModel> filteredStackFrames = new();
+
+        [DataMember]
+        public ObservableCollection<StackFrameViewModel> FilteredStackFrames
+        {
+            get => filteredStackFrames;
+            set
+            {
+                filteredStackFrames = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(FilteredStackFrames)));
+            }
+        }
+
+        private bool myCodeOnly;
+
+        [DataMember]
+        public bool MyCodeOnly
+        {
+            get => myCodeOnly;
+            set
+            {
+                myCodeOnly = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(MyCodeOnly)));
+            }
+        }
+
+        public void ApplyFilter()
+        {
+            FilteredStackFrames = myCodeOnly
+                ? new ObservableCollection<StackFrameViewModel>(StackFrames.Where(f => f.FileLinkVisibility == Visibility.Visible))
+                : new ObservableCollection<StackFrameViewModel>(StackFrames);
+        }
 
         [DataMember]
         public string Demystified { get; set; }
@@ -98,6 +137,19 @@ namespace ExceptionVisualizer.Models
         [DataMember]
         public string HelpLink { get; internal set; }
 
+        private int selectedTabIndex;
+
+        [DataMember]
+        public int SelectedTabIndex
+        {
+            get => selectedTabIndex;
+            set
+            {
+                selectedTabIndex = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedTabIndex)));
+            }
+        }
+
         private bool isSelected;
 
         [DataMember]
@@ -115,6 +167,22 @@ namespace ExceptionVisualizer.Models
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private class CopyCommand : IAsyncCommand
+        {
+            public bool CanExecute => true;
+
+            public Task ExecuteAsync(object? parameter, IClientContext clientContext, CancellationToken cancellationToken)
+            {
+                var text = parameter as string ?? string.Empty;
+                if (string.IsNullOrEmpty(text)) return Task.CompletedTask;
+                var thread = new Thread(() => System.Windows.Clipboard.SetText(text));
+                thread.SetApartmentState(ApartmentState.STA);
+                thread.Start();
+                thread.Join();
+                return Task.CompletedTask;
+            }
+        }
 
         private class NavigateCommand : IAsyncCommand
         {

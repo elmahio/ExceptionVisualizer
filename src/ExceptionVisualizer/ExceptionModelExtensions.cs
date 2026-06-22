@@ -9,6 +9,7 @@ namespace ExceptionVisualizer
     {
         internal static ExceptionViewModel ToViewModel(this ExceptionModel exception)
         {
+            var stackFrames = ParseFrames(exception.StackTrace);
             var viewModel = new ExceptionViewModel
             {
                 Data = new ObservableCollection<DataViewModel>(exception.Data.Select(d => new DataViewModel
@@ -28,7 +29,8 @@ namespace ExceptionVisualizer
                 Message = exception.Message,
                 Source = exception.Source,
                 StackTrace = exception.StackTrace,
-                StackFrames = ParseFrames(exception.StackTrace),
+                StackFrames = stackFrames,
+                FilteredStackFrames = new ObservableCollection<StackFrameViewModel>(stackFrames),
                 TargetSite = exception.TargetSite,
                 Demystified = exception.Demystified,
                 @Type = exception.Type,

@@ -1,10 +1,37 @@
 ﻿<DataTemplate xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 			  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
               xmlns:styles="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
-              xmlns:colors="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Shell.15.0">
+              xmlns:colors="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Shell.15.0"
+              xmlns:imaging="clr-namespace:Microsoft.VisualStudio.Imaging;assembly=Microsoft.VisualStudio.Imaging"
+              xmlns:catalog="clr-namespace:Microsoft.VisualStudio.Imaging;assembly=Microsoft.VisualStudio.ImageCatalog">
     <DataTemplate.Resources>
         <Style TargetType="TreeView" BasedOn="{StaticResource {x:Static styles:VsResourceKeys.ThemedDialogTreeViewStyleKey}}" />
         <Style TargetType="TextBox" BasedOn="{StaticResource {x:Static styles:VsResourceKeys.TextBoxStyleKey}}" />
+        <Style TargetType="TabItem">
+            <Setter Property="Foreground" Value="{DynamicResource VsBrush.ToolWindowText}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Border x:Name="Bd"
+                                Background="{DynamicResource VsBrush.ToolWindowBackground}"
+                                BorderBrush="Transparent"
+                                BorderThickness="0,0,0,2"
+                                Padding="10,4"
+                                Margin="0,0,2,0">
+                            <ContentPresenter ContentSource="Header"
+                                              VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"
+                                              TextElement.Foreground="{DynamicResource VsBrush.ToolWindowText}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Bd" Property="BorderBrush" Value="{DynamicResource VsBrush.Highlight}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <DataTemplate x:Key="CaptureTemplate">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -83,9 +110,115 @@
                         </Hyperlink>
                     </TextBlock>
                 </Grid>
-                <TabControl Grid.Row="3" Margin="3" Foreground="{DynamicResource VsBrush.ToolWindowText}" Background="{DynamicResource VsBrush.ToolWindowBackground }">
+                <TabControl Grid.Row="3" Margin="3"
+                            Foreground="{DynamicResource VsBrush.ToolWindowText}"
+                            Background="{DynamicResource VsBrush.ToolWindowBackground}"
+                            SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
                     <TabItem Header="Stack Trace">
-                        <ListBox ItemsSource="{Binding StackFrames}"
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Border Grid.Row="0"
+                                    BorderBrush="{DynamicResource VsBrush.ToolWindowBorder}"
+                                    BorderThickness="0,0,0,1"
+                                    Padding="6,4">
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Command="{Binding Copy}"
+                                            CommandParameter="{Binding FormattedStackTrace}"
+                                            ToolTip="Copy stack trace"
+                                            Width="22" Height="22"
+                                            VerticalAlignment="Center">
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="Button">
+                                                            <Border x:Name="border"
+                                                                    Background="Transparent"
+                                                                    BorderBrush="Transparent"
+                                                                    BorderThickness="1"
+                                                                    Padding="2">
+                                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                            </Border>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter TargetName="border" Property="Background" Value="{DynamicResource VsBrush.ToolWindowButtonHover}"/>
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource VsBrush.ToolWindowButtonHoverBorder}"/>
+                                                                </Trigger>
+                                                                <Trigger Property="IsPressed" Value="True">
+                                                                    <Setter TargetName="border" Property="Background" Value="{DynamicResource VsBrush.ToolWindowButtonDown}"/>
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource VsBrush.ToolWindowButtonDownBorder}"/>
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </Button.Style>
+                                        <imaging:CrispImage Width="16" Height="16"
+                                                            Moniker="{x:Static catalog:KnownMonikers.Copy}"
+                                                            colors:ImageThemingUtilities.ImageBackgroundColor="{DynamicResource {x:Static colors:EnvironmentColors.ToolWindowBackgroundColorKey}}"/>
+                                    </Button>
+                                    <ToggleButton IsChecked="{Binding MyCodeOnly, Mode=TwoWay}"
+                                                  ToolTip="Only my code"
+                                                  Width="22" Height="22"
+                                                  VerticalAlignment="Center">
+                                        <ToggleButton.Style>
+                                            <Style TargetType="ToggleButton">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="ToggleButton">
+                                                            <Border x:Name="border"
+                                                                    Background="Transparent"
+                                                                    BorderBrush="Transparent"
+                                                                    BorderThickness="1"
+                                                                    Padding="2">
+                                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                            </Border>
+                                                            <ControlTemplate.Triggers>
+                                                                <MultiTrigger>
+                                                                    <MultiTrigger.Conditions>
+                                                                        <Condition Property="IsMouseOver" Value="True"/>
+                                                                        <Condition Property="IsChecked" Value="False"/>
+                                                                    </MultiTrigger.Conditions>
+                                                                    <Setter TargetName="border" Property="Background" Value="{DynamicResource VsBrush.ToolWindowButtonHover}"/>
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource VsBrush.ToolWindowButtonHoverBorder}"/>
+                                                                </MultiTrigger>
+                                                                <MultiTrigger>
+                                                                    <MultiTrigger.Conditions>
+                                                                        <Condition Property="IsChecked" Value="True"/>
+                                                                        <Condition Property="IsMouseOver" Value="False"/>
+                                                                    </MultiTrigger.Conditions>
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource VsBrush.Highlight}"/>
+                                                                </MultiTrigger>
+                                                                <MultiTrigger>
+                                                                    <MultiTrigger.Conditions>
+                                                                        <Condition Property="IsChecked" Value="True"/>
+                                                                        <Condition Property="IsMouseOver" Value="True"/>
+                                                                    </MultiTrigger.Conditions>
+                                                                    <Setter TargetName="border" Property="Background" Value="{DynamicResource VsBrush.ToolWindowButtonHover}"/>
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource VsBrush.Highlight}"/>
+                                                                </MultiTrigger>
+                                                                <Trigger Property="IsPressed" Value="True">
+                                                                    <Setter TargetName="border" Property="Background" Value="{DynamicResource VsBrush.ToolWindowButtonDown}"/>
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource VsBrush.ToolWindowButtonDownBorder}"/>
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </ToggleButton.Style>
+                                        <imaging:CrispImage Width="16" Height="16"
+                                                            Moniker="{x:Static catalog:KnownMonikers.Filter}"
+                                                            colors:ImageThemingUtilities.ImageBackgroundColor="{DynamicResource {x:Static colors:EnvironmentColors.ToolWindowBackgroundColorKey}}"/>
+                                    </ToggleButton>
+                                </StackPanel>
+                            </Border>
+                        <ListBox Grid.Row="1"
+                                 ItemsSource="{Binding FilteredStackFrames}"
                                  SelectedItem="{Binding SelectedFrame, Mode=TwoWay}"
                                  Margin="3" Background="{DynamicResource VsBrush.ToolWindowBackground}"
                                  BorderThickness="0"
@@ -110,16 +243,16 @@
                                                    Foreground="#808080"/>
                                         <TextBlock Text="{Binding MethodName}" FontFamily="Courier New"
                                                    Visibility="{Binding ParsedVisibility}"
-                                                   Foreground="#70c9ba" FontWeight="Bold"/>
+                                                   Foreground="#0e7acc" FontWeight="Bold"/>
                                         <TextBlock Text="{Binding Parameters}" FontFamily="Courier New"
                                                    Visibility="{Binding ParsedVisibility}"
-                                                   Foreground="#ffffff"/>
+                                                   Foreground="{DynamicResource VsBrush.ToolWindowText}"/>
                                         <TextBlock Text="{Binding InPart}" FontFamily="Courier New"
                                                    Visibility="{Binding ParsedVisibility}"
                                                    Foreground="#808080"/>
                                         <TextBlock Text="{Binding FilePath}" FontFamily="Courier New"
                                                    Visibility="{Binding FileLinkVisibility}"
-                                                   Foreground="#f8b068"/>
+                                                   Foreground="#b36800"/>
                                         <TextBlock Text=":line " FontFamily="Courier New"
                                                    Visibility="{Binding FileLinkVisibility}"
                                                    Foreground="#808080"/>
@@ -130,6 +263,7 @@
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
+                        </Grid>
                     </TabItem>
                     <TabItem Header="Demystified">
                         <ScrollViewer Margin="3" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
@@ -239,9 +373,61 @@
         </Grid.RowDefinitions>
         <TreeView ItemsSource="{Binding Exceptions}" Grid.Column="0" Margin="3">
             <TreeView.ItemContainerStyle>
-                <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Static styles:VsResourceKeys.ThemedDialogTreeViewItemStyleKey}}">
+                <Style TargetType="TreeViewItem">
                     <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}"/>
                     <Setter Property="IsExpanded" Value="True"/>
+                    <Setter Property="Foreground" Value="{DynamicResource VsBrush.ToolWindowText}"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TreeViewItem">
+                                <StackPanel>
+                                    <Border x:Name="Bd" Background="Transparent" Padding="2">
+                                        <StackPanel Orientation="Horizontal">
+                                            <ToggleButton x:Name="Expander"
+                                                          Visibility="Collapsed"
+                                                          IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                                          Width="16" Height="16"
+                                                          Focusable="False"
+                                                          ClickMode="Press">
+                                                <ToggleButton.Template>
+                                                    <ControlTemplate TargetType="ToggleButton">
+                                                        <Border Background="Transparent">
+                                                            <TextBlock x:Name="Arrow" Text="▶"
+                                                                       VerticalAlignment="Center"
+                                                                       HorizontalAlignment="Center"
+                                                                       Foreground="{DynamicResource VsBrush.ToolWindowText}"
+                                                                       FontSize="8"/>
+                                                        </Border>
+                                                        <ControlTemplate.Triggers>
+                                                            <Trigger Property="IsChecked" Value="True">
+                                                                <Setter TargetName="Arrow" Property="Text" Value="▼"/>
+                                                            </Trigger>
+                                                        </ControlTemplate.Triggers>
+                                                    </ControlTemplate>
+                                                </ToggleButton.Template>
+                                            </ToggleButton>
+                                            <ContentPresenter ContentSource="Header"
+                                                              VerticalAlignment="Center"
+                                                              Margin="2,2,4,2"/>
+                                        </StackPanel>
+                                    </Border>
+                                    <ItemsPresenter x:Name="ItemsHost" Margin="16,0,0,0"/>
+                                </StackPanel>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="Bd" Property="Background" Value="{DynamicResource VsBrush.Highlight}"/>
+                                        <Setter Property="Foreground" Value="{DynamicResource VsBrush.HighlightText}"/>
+                                    </Trigger>
+                                    <Trigger Property="HasItems" Value="True">
+                                        <Setter TargetName="Expander" Property="Visibility" Value="Visible"/>
+                                    </Trigger>
+                                    <Trigger Property="IsExpanded" Value="False">
+                                        <Setter TargetName="ItemsHost" Property="Visibility" Value="Collapsed"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
                 </Style>
             </TreeView.ItemContainerStyle>
             <TreeView.ItemsPanel>
