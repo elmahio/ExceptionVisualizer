@@ -54,11 +54,13 @@ namespace ExceptionVisualizerSource
                     .Select(p => new KeyValuePair<string, string>(p.Name, p.GetValue(e)?.ToString()))
                     .ToList()
             };
-            var stackTrace = new EnhancedStackTrace(e);
-            if (stackTrace.FrameCount > 0)
+            try
             {
-                model.Demystified = stackTrace.ToString();
+                var stackTrace = new EnhancedStackTrace(e);
+                if (stackTrace.FrameCount > 0)
+                    model.Demystified = stackTrace.ToString();
             }
+            catch { }
 
             if (e is AggregateException aggregateException && aggregateException.InnerExceptions?.Count> 0)
             {
