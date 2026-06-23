@@ -1,6 +1,12 @@
-# <img src="src/ExceptionVisualizer/icon.png" style="height: 1em; width: 1em;"> Exception Visualizer [![Build](https://github.com/elmahio/ExceptionVisualizer/actions/workflows/dotnet.yml/badge.svg)](https://github.com/elmahio/ExceptionVisualizer/actions) [![Visual Studio Marketplace Downloads](https://img.shields.io/visual-studio-marketplace/d/elmahio.exceptioninspector)](https://marketplace.visualstudio.com/items?itemName=elmahio.exceptioninspector)
+# <img src="src/ExceptionVisualizer/icon.png" style="height: 1em; width: 1em;"> Exception Visualizer [![Build](https://github.com/elmahio/ExceptionVisualizer/actions/workflows/dotnet.yml/badge.svg)](https://github.com/elmahio/ExceptionVisualizer/actions)
 
 Exception Debug Visualizer for Visual Studio.
+
+## Install
+
+The extension can be installed directly from the *Extension Manager* window in Visual Studio or from the Visual Studio Marketplace: https://marketplace.visualstudio.com/items?itemName=elmahio.exceptioninspector.
+
+## Features
 
 When debugging applications and an exception is thrown you can view the exception details in a more structured and visually pleasing form:
 
@@ -14,9 +20,17 @@ Aggreate and inner exceptions are nested in the left side of the screen:
 
 ![Nested exceptions](screenshot3.png)
 
+The stack trace supports syntax highlighting, jump to code, copy, and show my code only toggle:
+
+![Formatted stack trace](screenshot4.png)
+
+Exception data and properties are shown when available:
+
+![Exception data and properties](screenshot5.png)
+
 The Exception Visualizer can be opened from the *Locals* or *QuickView* windows by clicking *View* next to the exception:
 
-![View Exception Visualizer](https://github.com/elmahio/ExceptionVisualizer/assets/563206/8dd68fc6-85f2-416d-a5b2-8f78de57fdbf)
+![View Exception Visualizer](screenshot6.png)
 
 ## Updating
 
