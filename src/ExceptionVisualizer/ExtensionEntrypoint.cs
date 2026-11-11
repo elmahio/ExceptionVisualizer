@@ -21,7 +21,8 @@ namespace ExceptionVisualizer
             {
                 Tags = ["visualizer", "exception", "debug", "debugging"],
                 Icon = "icon.png",
-                InstallationTargetVersion = "[17.12,19.0)",
+                InstallationTargetVersion = "[18.0,19.0)",
+                DotnetTargetVersions = ["net10.0"],
             }
         };
 
