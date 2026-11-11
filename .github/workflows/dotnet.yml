@@ -35,13 +35,13 @@ jobs:
     - uses: actions/upload-artifact@v7
       with:
         name: ExceptionVisualizer.vsix
-        path: src\ExceptionVisualizer\bin\Release\net8.0-windows\ExceptionVisualizer.vsix
+        path: src\ExceptionVisualizer\bin\Release\net10.0-windows\ExceptionVisualizer.vsix
 
     - name: Create Release
       if: ${{ github.event_name == 'push' }}
       uses: softprops/action-gh-release@v3
       with:
-        files: ./src/ExceptionVisualizer/bin/Release/net8.0-windows/ExceptionVisualizer.vsix
+        files: ./src/ExceptionVisualizer/bin/Release/net10.0-windows/ExceptionVisualizer.vsix
         tag_name: 0.2.${{ github.run_number }}
         name: 0.2.${{ github.run_number }}
         draft: false

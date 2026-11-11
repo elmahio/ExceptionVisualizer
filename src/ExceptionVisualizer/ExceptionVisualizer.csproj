@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<AssemblyVersion>0.2.0</AssemblyVersion>
-		<TargetFramework>net8.0-windows</TargetFramework>
+		<TargetFramework>net10.0-windows</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<LangVersion>12</LangVersion>
